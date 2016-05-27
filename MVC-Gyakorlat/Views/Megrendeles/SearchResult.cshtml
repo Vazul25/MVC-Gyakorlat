@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MVC_Gyakorlat.Models.MegrendlesSearchResultModel>
+
+@{
+    ViewBag.Title = "Megrendelés Keresés ";
+}
+<script src="~/Scripts/SearchResult.js" type="text/javascript">
+
+</script>
+
+@Html.Partial("Search", (MVC_Gyakorlat.Models.MegrendelesSearchModel)ViewBag.SearchCondition)
+
+<table id="abc">
+    <tr>
+        <th></th>
+        <th>
+            Vevő név
+        </th>
+        <th>
+            Státusz
+        </th>
+        <th>
+            Megrendelés Dátum
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Tételek", "Details", new { id = item.ID }, new { target = "_blank",@class="DetailsLink" })
+            </td>
+            <td>
+                @item.VevoNev
+            </td>
+            <td>
+                @item.Statusz
+            </td>
+            <td>
+                @String.Format("{0:g}", item.MegrendelesDatum)
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="Details">
+    <h3>Megrendelés Tételek</h3>
+    <div id="DetailsData">
+
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model MVC_Gyakorlat.Models.MegrendelesSearchModel
+
+@{
+    ViewBag.Title = "Megrendelés Keresés";
+}
+
+<h2>Megrendelés Keresés</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.VevoNev, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VevoNev)
+                @Html.ValidationMessageFor(model => model.VevoNev)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FromDate)
+                @Html.ValidationMessageFor(model => model.FromDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ToDate)
+                @Html.ValidationMessageFor(model => model.ToDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Keresés" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

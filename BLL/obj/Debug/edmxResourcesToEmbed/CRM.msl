@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CRMModelStoreContainer" CdmEntityContainer="CRMEntities">
+    <EntitySetMapping Name="AFA">
+      <EntityTypeMapping TypeName="CRMModel.AFA">
+        <MappingFragment StoreEntitySet="AFA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Kulcs" ColumnName="Kulcs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FizetesMod">
+      <EntityTypeMapping TypeName="CRMModel.FizetesMod">
+        <MappingFragment StoreEntitySet="FizetesMod">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Mod" ColumnName="Mod" />
+          <ScalarProperty Name="Hatarido" ColumnName="Hatarido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategoria">
+      <EntityTypeMapping TypeName="CRMModel.Kategoria">
+        <MappingFragment StoreEntitySet="Kategoria">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="SzuloKategoriaID" ColumnName="SzuloKategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Megrendeles">
+      <EntityTypeMapping TypeName="CRMModel.Megrendeles">
+        <MappingFragment StoreEntitySet="Megrendeles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Hatarido" ColumnName="Hatarido" />
+          <ScalarProperty Name="TelephelyID" ColumnName="TelephelyID" />
+          <ScalarProperty Name="StatuszID" ColumnName="StatuszID" />
+          <ScalarProperty Name="FizetesModID" ColumnName="FizetesModID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MegrendelesTetel">
+      <EntityTypeMapping TypeName="CRMModel.MegrendelesTetel">
+        <MappingFragment StoreEntitySet="MegrendelesTetel">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Mennyiseg" ColumnName="Mennyiseg" />
+          <ScalarProperty Name="NettoAr" ColumnName="NettoAr" />
+          <ScalarProperty Name="MegrendelesID" ColumnName="MegrendelesID" />
+          <ScalarProperty Name="TermekID" ColumnName="TermekID" />
+          <ScalarProperty Name="StatuszID" ColumnName="StatuszID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statusz">
+      <EntityTypeMapping TypeName="CRMModel.Statusz">
+        <MappingFragment StoreEntitySet="Statusz">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Telephely">
+      <EntityTypeMapping TypeName="CRMModel.Telephely">
+        <MappingFragment StoreEntitySet="Telephely">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IR" ColumnName="IR" />
+          <ScalarProperty Name="Varos" ColumnName="Varos" />
+          <ScalarProperty Name="Utca" ColumnName="Utca" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="VevoID" ColumnName="VevoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Termek">
+      <EntityTypeMapping TypeName="CRMModel.Termek">
+        <MappingFragment StoreEntitySet="Termek">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="NettoAr" ColumnName="NettoAr" />
+          <ScalarProperty Name="Raktarkeszlet" ColumnName="Raktarkeszlet" />
+          <ScalarProperty Name="AFAID" ColumnName="AFAID" />
+          <ScalarProperty Name="KategoriaID" ColumnName="KategoriaID" />
+          <ScalarProperty Name="Leiras" ColumnName="Leiras" />
+          <ScalarProperty Name="Kep" ColumnName="Kep" />
+          <ScalarProperty Name="verzio" ColumnName="verzio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vevo">
+      <EntityTypeMapping TypeName="CRMModel.Vevo">
+        <MappingFragment StoreEntitySet="Vevo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="Szamlaszam" ColumnName="Szamlaszam" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Jelszo" ColumnName="Jelszo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="KozpontiTelephelyID" ColumnName="KozpontiTelephely" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVC_Gyakorlat.Models.TermekSearchResultModel>
+
+@{
+    ViewBag.Title = "Keresés Eredménye";
+}
+
+
+<div>
+    @Html.Partial("Search",
+    (MVC_Gyakorlat.Models.TermekSearchModel)(ViewBag.SearchCondition))
+</div>
+ <h2>Termékek</h2>
+<table class="table">
+    <tr>
+        <th>
+           Fénykép
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TermekNev)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NettoAr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rakatrkeszlet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategoria)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            Fénykép helye
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TermekNev)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NettoAr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rakatrkeszlet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategoria)
+        </td>
+        <td>
+            @Html.ActionLink("Szerkesztés", "Edit", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

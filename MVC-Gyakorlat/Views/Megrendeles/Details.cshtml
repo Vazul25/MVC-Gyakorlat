@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MVC_Gyakorlat.Models.MegrendlesTetelModel>
+
+<table>
+    <tr>
+        <th>
+            Termék név
+        </th>
+        <th>
+            Ár
+        </th>
+        <th>
+            Mennyiség
+        </th>
+        <th>
+            Státusz
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.TermekNev
+            </td>
+            <td>
+                @String.Format("{0:F}", item.Ar)
+            </td>
+            <td>
+                @item.Mennyiseg
+            </td>
+            <td>
+                @item.Statusz
+            </td>
+        </tr>
+    }
+
+</table>

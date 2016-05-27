@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AFA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kulcs" Type="int" />
+  </EntityType>
+  <EntityType Name="FizetesMod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mod" Type="nvarchar" MaxLength="20" />
+    <Property Name="Hatarido" Type="int" />
+  </EntityType>
+  <EntityType Name="Kategoria">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nev" Type="nvarchar" MaxLength="50" />
+    <Property Name="SzuloKategoria" Type="int" />
+  </EntityType>
+  <EntityType Name="Megrendeles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Datum" Type="datetime" />
+    <Property Name="Hatarido" Type="datetime" />
+    <Property Name="TelephelyID" Type="int" />
+    <Property Name="StatuszID" Type="int" />
+    <Property Name="FizetesModID" Type="int" />
+  </EntityType>
+  <EntityType Name="MegrendelesTetel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mennyiseg" Type="int" />
+    <Property Name="NettoAr" Type="float" />
+    <Property Name="MegrendelesID" Type="int" />
+    <Property Name="TermekID" Type="int" />
+    <Property Name="StatuszID" Type="int" />
+  </EntityType>
+  <EntityType Name="Statusz">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nev" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Telephely">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IR" Type="char" MaxLength="4" />
+    <Property Name="Varos" Type="nvarchar" MaxLength="50" />
+    <Property Name="Utca" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tel" Type="varchar" MaxLength="15" />
+    <Property Name="Fax" Type="varchar" MaxLength="15" />
+    <Property Name="VevoID" Type="int" />
+  </EntityType>
+  <EntityType Name="Termek">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nev" Type="nvarchar" MaxLength="50" />
+    <Property Name="NettoAr" Type="float" />
+    <Property Name="Raktarkeszlet" Type="int" />
+    <Property Name="AFAID" Type="int" />
+    <Property Name="KategoriaID" Type="int" />
+    <Property Name="Leiras" Type="xml" />
+    <Property Name="Kep" Type="image" />
+    <Property Name="verzio" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vevo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nev" Type="nvarchar" MaxLength="50" />
+    <Property Name="Szamlaszam" Type="varchar" MaxLength="50" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Jelszo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="KozpontiTelephely" Type="int" />
+  </EntityType>
+  <Association Name="FK__Kategoria__Szulo__45BE5BA9">
+    <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="0..1" />
+    <End Role="Kategoria1" Type="Self.Kategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoria">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Kategoria1">
+        <PropertyRef Name="SzuloKategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Megrendel__Fizet__540C7B00">
+    <End Role="FizetesMod" Type="Self.FizetesMod" Multiplicity="0..1" />
+    <End Role="Megrendeles" Type="Self.Megrendeles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FizetesMod">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Megrendeles">
+        <PropertyRef Name="FizetesModID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Megrendel__Megre__56E8E7AB">
+    <End Role="Megrendeles" Type="Self.Megrendeles" Multiplicity="0..1" />
+    <End Role="MegrendelesTetel" Type="Self.MegrendelesTetel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Megrendeles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MegrendelesTetel">
+        <PropertyRef Name="MegrendelesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Megrendel__Statu__531856C7">
+    <End Role="Statusz" Type="Self.Statusz" Multiplicity="0..1" />
+    <End Role="Megrendeles" Type="Self.Megrendeles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statusz">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Megrendeles">
+        <PropertyRef Name="StatuszID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Megrendel__Statu__58D1301D">
+    <End Role="Statusz" Type="Self.Statusz" Multiplicity="0..1" />
+    <End Role="MegrendelesTetel" Type="Self.MegrendelesTetel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statusz">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MegrendelesTetel">
+        <PropertyRef Name="StatuszID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Megrendel__Telep__5224328E">
+    <End Role="Telephely" Type="Self.Telephely" Multiplicity="0..1" />
+    <End Role="Megrendeles" Type="Self.Megrendeles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Telephely">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Megrendeles">
+        <PropertyRef Name="TelephelyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Megrendel__Terme__57DD0BE4">
+    <End Role="Termek" Type="Self.Termek" Multiplicity="0..1" />
+    <End Role="MegrendelesTetel" Type="Self.MegrendelesTetel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Termek">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MegrendelesTetel">
+        <PropertyRef Name="TermekID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Telephely__VevoI__4E53A1AA">
+    <End Role="Vevo" Type="Self.Vevo" Multiplicity="0..1" />
+    <End Role="Telephely" Type="Self.Telephely" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vevo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Telephely">
+        <PropertyRef Name="VevoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Termek__AFAID__489AC854">
+    <End Role="AFA" Type="Self.AFA" Multiplicity="0..1" />
+    <End Role="Termek" Type="Self.Termek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AFA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Termek">
+        <PropertyRef Name="AFAID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Termek__Kategori__498EEC8D">
+    <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="0..1" />
+    <End Role="Termek" Type="Self.Termek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoria">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Termek">
+        <PropertyRef Name="KategoriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Vevo_KozpontiTelephely">
+    <End Role="Telephely" Type="Self.Telephely" Multiplicity="0..1" />
+    <End Role="Vevo" Type="Self.Vevo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Telephely">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vevo">
+        <PropertyRef Name="KozpontiTelephely" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRMModelStoreContainer">
+    <EntitySet Name="AFA" EntityType="Self.AFA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FizetesMod" EntityType="Self.FizetesMod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategoria" EntityType="Self.Kategoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Megrendeles" EntityType="Self.Megrendeles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MegrendelesTetel" EntityType="Self.MegrendelesTetel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Statusz" EntityType="Self.Statusz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Telephely" EntityType="Self.Telephely" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Termek" EntityType="Self.Termek" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vevo" EntityType="Self.Vevo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Kategoria__Szulo__45BE5BA9" Association="Self.FK__Kategoria__Szulo__45BE5BA9">
+      <End Role="Kategoria" EntitySet="Kategoria" />
+      <End Role="Kategoria1" EntitySet="Kategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Megrendel__Fizet__540C7B00" Association="Self.FK__Megrendel__Fizet__540C7B00">
+      <End Role="FizetesMod" EntitySet="FizetesMod" />
+      <End Role="Megrendeles" EntitySet="Megrendeles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Megrendel__Megre__56E8E7AB" Association="Self.FK__Megrendel__Megre__56E8E7AB">
+      <End Role="Megrendeles" EntitySet="Megrendeles" />
+      <End Role="MegrendelesTetel" EntitySet="MegrendelesTetel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Megrendel__Statu__531856C7" Association="Self.FK__Megrendel__Statu__531856C7">
+      <End Role="Statusz" EntitySet="Statusz" />
+      <End Role="Megrendeles" EntitySet="Megrendeles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Megrendel__Statu__58D1301D" Association="Self.FK__Megrendel__Statu__58D1301D">
+      <End Role="Statusz" EntitySet="Statusz" />
+      <End Role="MegrendelesTetel" EntitySet="MegrendelesTetel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Megrendel__Telep__5224328E" Association="Self.FK__Megrendel__Telep__5224328E">
+      <End Role="Telephely" EntitySet="Telephely" />
+      <End Role="Megrendeles" EntitySet="Megrendeles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Megrendel__Terme__57DD0BE4" Association="Self.FK__Megrendel__Terme__57DD0BE4">
+      <End Role="Termek" EntitySet="Termek" />
+      <End Role="MegrendelesTetel" EntitySet="MegrendelesTetel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Telephely__VevoI__4E53A1AA" Association="Self.FK__Telephely__VevoI__4E53A1AA">
+      <End Role="Vevo" EntitySet="Vevo" />
+      <End Role="Telephely" EntitySet="Telephely" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Termek__AFAID__489AC854" Association="Self.FK__Termek__AFAID__489AC854">
+      <End Role="AFA" EntitySet="AFA" />
+      <End Role="Termek" EntitySet="Termek" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Termek__Kategori__498EEC8D" Association="Self.FK__Termek__Kategori__498EEC8D">
+      <End Role="Kategoria" EntitySet="Kategoria" />
+      <End Role="Termek" EntitySet="Termek" />
+    </AssociationSet>
+    <AssociationSet Name="Vevo_KozpontiTelephely" Association="Self.Vevo_KozpontiTelephely">
+      <End Role="Telephely" EntitySet="Telephely" />
+      <End Role="Vevo" EntitySet="Vevo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
